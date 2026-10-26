@@ -9,13 +9,13 @@
       --primary: #06c755;
       --primary-dark: #05a847;
       --primary-light: #e8f9ee;
-      --bg: #f6f7fb;
+      --bg: #f4f5f8;
       --card-bg: #ffffff;
-      --text: #22252a;
-      --text-sub: #6c757d;
-      --border: #e2e5eb;
+      --text: #1f2329;
+      --text-sub: #667085;
+      --border: #e0e3e8;
       --border-focus: #06c755;
-      --radius: 14px;
+      --radius: 12px;
     }
 
     * {
@@ -23,127 +23,162 @@
       -webkit-tap-highlight-color: transparent;
       margin: 0;
       padding: 0;
+      touch-action: manipulation; /* 防止雙擊縮放，提升點擊響應 */
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
-      padding: 16px 14px 40px;
-      padding-bottom: calc(40px + env(safe-area-inset-bottom));
-      line-height: 1.45;
+      padding: 8px 10px 24px;
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+      line-height: 1.35;
       -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 480px;
+      max-width: 440px;
       margin: 0 auto;
     }
 
-    .header-title {
-      font-size: 20px;
-      font-weight: 700;
-      text-align: center;
-      margin: 8px 0 16px;
-      color: #1f2329;
+    /* 頂部導航列 */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 2px 0 8px;
+      padding: 0 2px;
     }
 
+    .back-btn {
+      font-size: 12px;
+      color: #4b5563;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .app-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      text-align: center;
+      flex: 1;
+    }
+
+    /* 精巧卡片 */
     .card {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(0, 0, 0, 0.03);
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.04);
     }
 
     .card-title {
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
       color: #374151;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
     }
 
+    .card-title-left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Segment 分段按鈕群 (高度縮減好按) */
     .segment-group {
       display: flex;
-      background: #ededf2;
-      border-radius: 10px;
-      padding: 3px;
+      background: #f0f2f5;
+      border-radius: 8px;
+      padding: 2.5px;
       gap: 3px;
-      margin-bottom: 10px;
     }
 
     .segment-btn {
       flex: 1;
       border: none;
       background: transparent;
-      padding: 9px 8px;
-      font-size: 14px;
+      padding: 6px 8px;
+      font-size: 13px;
       font-weight: 600;
       color: #555c68;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.15s;
     }
 
     .segment-btn.active {
       background: #ffffff;
-      color: #111;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      color: #065f46;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     }
 
+    /* 展開子面板 */
     .sub-panel {
-      background: #fbfbfd;
+      background: #fbfcfd;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 8px;
-      animation: fadeIn 0.2s ease-in-out;
+      border-radius: 8px;
+      padding: 8px;
+      margin-top: 6px;
+      animation: fadeIn 0.15s ease-out;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-4px); }
+      from { opacity: 0; transform: translateY(-3px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .input-box {
+    /* 所有輸入框：防止 iOS Safari 自動放大，必須保持 16px 字體，但靠 padding 保持精巧 */
+    input[type="text"],
+    input[type="number"] {
       width: 100%;
-      padding: 10px 12px;
-      font-size: 15px;
+      height: 38px;
+      padding: 6px 10px;
+      font-size: 16px !important; /* 核心：防止 iOS Zoom */
       border: 1.5px solid var(--border);
-      border-radius: 9px;
+      border-radius: 8px;
       background: #fff;
       color: var(--text);
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.15s;
     }
 
-    .input-box:focus {
+    input:focus {
       border-color: var(--border-focus);
     }
 
-    .input-box::placeholder {
-      color: #a0aec0;
-      font-size: 14px;
+    input::placeholder {
+      font-size: 13px;
+      color: #9ca3af;
     }
 
+    /* 花束快選價格列 */
     .chips-row {
       display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
     }
 
     .chip-btn {
       flex: 1;
       border: 1.5px solid var(--border);
       background: #fff;
-      padding: 9px 10px;
-      border-radius: 9px;
-      font-size: 14px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-size: 13px;
       font-weight: 600;
       color: #4b5563;
       cursor: pointer;
@@ -155,18 +190,20 @@
       border-color: var(--primary);
       background: var(--primary-light);
       color: var(--primary-dark);
+      font-weight: 700;
     }
 
+    /* 單選/開關列 (提袋/保冰袋) */
     .toggle-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 12px;
+      height: 38px;
+      padding: 0 10px;
       background: #fff;
       border: 1.5px solid var(--border);
-      border-radius: 9px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 8px;
       transition: all 0.15s;
     }
 
@@ -176,53 +213,57 @@
     }
 
     .toggle-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       color: #374151;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .toggle-badge {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: #2b7440;
+    }
+
+    /* 格線排版 */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 6px;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 10px;
+      gap: 6px;
+      margin-bottom: 6px;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
+    /* 加購按鈕 (高度緊湊 40px) */
     .addon-btn {
       background: #ffffff;
       border: 1.5px solid var(--border);
-      padding: 11px 10px;
-      border-radius: 10px;
-      font-size: 14px;
+      padding: 6px 8px;
+      height: 44px;
+      border-radius: 8px;
+      font-size: 13px;
       font-weight: 600;
       color: #374151;
-      text-align: left;
+      text-align: center;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 2px;
+      align-items: center;
+      gap: 1px;
       transition: all 0.15s ease;
     }
 
     .addon-btn span {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       color: #6b7280;
     }
@@ -235,138 +276,114 @@
 
     .addon-btn.active span {
       color: var(--primary-dark);
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    .stepper-card {
+    /* 數字蠟燭輸入列 (看有幾位就加幾個$30) */
+    .num-candle-box {
       border: 1.5px solid var(--border);
+      border-radius: 8px;
       background: #fff;
-      border-radius: 10px;
-      padding: 10px 12px;
+      padding: 6px 8px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      gap: 8px;
+      margin-bottom: 6px;
       transition: border-color 0.15s, background-color 0.15s;
     }
 
-    .stepper-card.active {
+    .num-candle-box.has-val {
       border-color: var(--primary);
       background: var(--primary-light);
     }
 
-    .stepper-info .name {
-      font-size: 14px;
-      font-weight: 600;
-      color: #374151;
+    .num-candle-input {
+      flex: 1;
+      height: 32px !important;
+      padding: 4px 8px !important;
+      font-size: 16px !important;
+      border: 1px solid #d1d5db !important;
+      border-radius: 6px !important;
+      background: #fff !important;
     }
 
-    .stepper-info .sub {
+    .num-badge {
       font-size: 12px;
-      color: #6b7280;
-    }
-
-    .stepper-ctrl {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .step-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: #fff;
-      font-size: 18px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #374151;
-      cursor: pointer;
-    }
-
-    .step-btn:active {
-      background: #e5e7eb;
-    }
-
-    .step-val {
-      font-size: 15px;
       font-weight: 700;
-      min-width: 22px;
-      text-align: center;
+      color: var(--primary-dark);
+      white-space: nowrap;
+      min-width: 60px;
+      text-align: right;
     }
 
-    .custom-item-row {
+    /* 其他與備註列 */
+    .custom-row {
       display: flex;
-      gap: 8px;
-      margin-bottom: 8px;
+      gap: 6px;
+      margin-bottom: 6px;
     }
 
-    .custom-item-row:last-child {
+    .custom-row:last-child {
       margin-bottom: 0;
     }
 
+    /* 總額盒 (小巧醒目) */
     .total-panel {
       background: #ffffff;
       border-radius: var(--radius);
-      padding: 14px 16px;
-      margin-bottom: 12px;
-      border: 1.5px solid #d1fae5;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      border: 1.5px solid #a7f3d0;
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
     }
 
     .total-panel .label {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
       color: #065f46;
     }
 
     .total-panel .amount {
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 800;
       color: var(--primary-dark);
       font-variant-numeric: tabular-nums;
     }
 
+    /* 預覽折疊/顯示 */
     .preview-box {
-      background: #f9fafb;
-      border: 1px dashed #d1d5db;
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 14px;
-      font-size: 13px;
-      color: #4b5563;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: #475569;
       white-space: pre-wrap;
-      line-height: 1.5;
+      line-height: 1.4;
+      max-height: 120px;
+      overflow-y: auto;
     }
 
-    .preview-title {
-      font-size: 11px;
-      color: #9ca3af;
-      font-weight: 600;
-      margin-bottom: 4px;
-      letter-spacing: 0.5px;
-    }
-
+    /* 主按鈕 */
     .btn-action {
       width: 100%;
-      padding: 15px;
+      height: 46px;
       background: var(--primary);
       color: #fff;
       border: none;
-      border-radius: 12px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(6, 199, 85, 0.3);
+      box-shadow: 0 3px 10px rgba(6, 199, 85, 0.28);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
+      transition: transform 0.08s, background 0.15s;
     }
 
     .btn-action:active {
@@ -376,30 +393,81 @@
 
     .btn-secondary {
       width: 100%;
-      padding: 12px;
+      padding: 8px;
       background: transparent;
-      color: #9ca3af;
+      color: #8c95a0;
       border: none;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* iPhone 點三下教學收合卡片 */
+    .ios-shortcut-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      margin-top: 12px;
+      border: 1px solid #e2e8f0;
+      font-size: 12px;
+    }
+
+    .ios-shortcut-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .ios-steps {
+      display: none;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #e2e8f0;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .ios-steps ol {
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .ios-steps li {
+      margin-bottom: 4px;
+    }
+
+    .btn-copy-url {
+      display: inline-block;
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
       cursor: pointer;
       margin-top: 4px;
     }
 
+    /* Toast */
     .toast {
       position: fixed;
-      top: 24px;
+      top: 16px;
       left: 50%;
       transform: translateX(-50%) translateY(-20px);
       background: rgba(17, 24, 39, 0.92);
       color: #fff;
-      padding: 10px 18px;
-      border-radius: 30px;
-      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
       font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       opacity: 0;
       pointer-events: none;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
       z-index: 999;
     }
 
@@ -412,11 +480,18 @@
 <body>
 
   <div class="container">
-    <h1 class="header-title">📋 訂單報價小幫手</h1>
+    <!-- 頂部列 -->
+    <div class="top-bar">
+      <a href="./index.html" class="back-btn">‹ 導航</a>
+      <span class="app-title">📋 訂單報價小幫手</span>
+      <span style="font-size: 11px; color: #94a3b8; font-weight: 600;">快填版</span>
+    </div>
 
     <!-- 1. 主品項：花束 / 提袋 -->
     <div class="card">
-      <div class="card-title">💐 花束品項</div>
+      <div class="card-title">
+        <span class="card-title-left">💐 花束品項</span>
+      </div>
       <div class="segment-group">
         <button type="button" class="segment-btn active" id="btnFlowerNone" onclick="setFlowerMode('none')">無</button>
         <button type="button" class="segment-btn" id="btnFlowerActive" onclick="setFlowerMode('flower')">花束</button>
@@ -427,10 +502,9 @@
           <button type="button" class="chip-btn active" id="btnFlower390" onclick="setFlowerPriceType('390')">$390</button>
           <button type="button" class="chip-btn" id="btnFlowerCustom" onclick="setFlowerPriceType('custom')">選填價格</button>
         </div>
-        <div id="flowerCustomInputWrap" style="display: none; margin-bottom: 8px;">
-          <input type="number" id="flowerCustomPrice" class="input-box" placeholder="請輸入花束金額" inputmode="numeric" oninput="calc()">
+        <div id="flowerCustomInputWrap" style="display: none; margin-bottom: 6px;">
+          <input type="number" id="flowerCustomPrice" placeholder="輸入花束金額" inputmode="numeric" oninput="calc()">
         </div>
-
         <div class="toggle-row" id="bagToggle" onclick="toggleBag()">
           <span class="toggle-title">🛍️ 提袋</span>
           <span class="toggle-badge">+$40</span>
@@ -440,20 +514,26 @@
 
     <!-- 2. 主品項：蛋糕 -->
     <div class="card">
-      <div class="card-title">🎂 蛋糕品項</div>
+      <div class="card-title">
+        <span class="card-title-left">🎂 蛋糕品項</span>
+      </div>
       <div class="segment-group">
         <button type="button" class="segment-btn active" id="btnCakeNone" onclick="setCakeMode('none')">無</button>
         <button type="button" class="segment-btn" id="btnCakeActive" onclick="setCakeMode('cake')">蛋糕</button>
       </div>
 
       <div id="cakeDetail" class="sub-panel" style="display: none;">
-        <input type="number" id="cakePrice" class="input-box" placeholder="請輸入蛋糕金額" inputmode="numeric" oninput="calc()">
+        <input type="number" id="cakePrice" placeholder="請輸入蛋糕金額" inputmode="numeric" oninput="calc()">
       </div>
     </div>
 
     <!-- 3. 常見加購 -->
     <div class="card">
-      <div class="card-title">🍴 餐具加購</div>
+      <div class="card-title">
+        <span class="card-title-left">✨ 常見加購</span>
+      </div>
+
+      <!-- 餐具三選 -->
       <div class="grid-3">
         <button type="button" class="addon-btn" id="addon-utensil2" onclick="toggleAddon('utensil2', '2人餐具', 15)">
           2人餐具
@@ -469,8 +549,6 @@
         </button>
       </div>
 
-      <div class="card-title" style="margin-top: 14px;">🕯️ 蠟燭 / 配件</div>
-      
       <!-- 蠟燭 $45 / $55 -->
       <div class="grid-2">
         <button type="button" class="addon-btn" id="addon-candle45" onclick="selectCandle(45)">
@@ -483,57 +561,71 @@
         </button>
       </div>
 
-      <!-- 數字蠟燭 -->
-      <div class="stepper-card" id="numCandleCard">
-        <div class="stepper-info">
-          <div class="name">數字蠟燭</div>
-          <div class="sub">$30 / 支</div>
-        </div>
-        <div class="stepper-ctrl">
-          <button type="button" class="step-btn" onclick="changeNumCandle(-1)">−</button>
-          <span class="step-val" id="numCandleQty">0</span>
-          <button type="button" class="step-btn" onclick="changeNumCandle(1)">+</button>
-        </div>
+      <!-- 數字蠟燭：填入數字，看有幾位就加幾個$30 -->
+      <div class="num-candle-box" id="numCandleBox">
+        <span style="font-size: 13px; font-weight: 600; white-space: nowrap;">🔢 數字蠟燭</span>
+        <input type="text" id="numCandleText" class="num-candle-input" placeholder="輸入數字(如: 18)" inputmode="numeric" oninput="onNumCandleInput()">
+        <span class="num-badge" id="numCandleBadge">+$0</span>
       </div>
 
       <!-- 保冰袋 -->
-      <div class="toggle-row" id="iceBagToggle" onclick="toggleIceBag()" style="margin-top: 0; margin-bottom: 12px;">
+      <div class="toggle-row" id="iceBagToggle" onclick="toggleIceBag()" style="margin-bottom: 6px;">
         <span class="toggle-title">🧊 保冰袋</span>
         <span class="toggle-badge">+$100</span>
       </div>
 
       <!-- 其他與備註 -->
-      <div class="card-title" style="margin-top: 12px;">✏️ 其他與備註</div>
-      
-      <div class="custom-item-row">
-        <input type="text" id="otherName" class="input-box" style="flex: 2;" placeholder="其他項目（預設：其他）" oninput="calc()">
-        <input type="number" id="otherPrice" class="input-box" style="flex: 1.2;" placeholder="金額" inputmode="numeric" oninput="calc()">
+      <div class="custom-row">
+        <input type="text" id="otherName" style="flex: 1.8;" placeholder="其他品項(預設:其他)" oninput="calc()">
+        <input type="number" id="otherPrice" style="flex: 1.2;" placeholder="金額" inputmode="numeric" oninput="calc()">
       </div>
 
-      <div class="custom-item-row">
-        <input type="text" id="noteName" class="input-box" style="flex: 2;" placeholder="備註說明（預設：備註）" oninput="calc()">
-        <input type="number" id="notePrice" class="input-box" style="flex: 1.2;" placeholder="金額" inputmode="numeric" oninput="calc()">
+      <div class="custom-row">
+        <input type="text" id="noteName" style="flex: 1.8;" placeholder="備註說明(預設:備註)" oninput="calc()">
+        <input type="number" id="notePrice" style="flex: 1.2;" placeholder="金額" inputmode="numeric" oninput="calc()">
       </div>
     </div>
 
-    <!-- 總計欄位 -->
+    <!-- 總額 -->
     <div class="total-panel">
-      <span class="label">預估總金額</span>
+      <span class="label">加總金額</span>
       <span class="amount" id="displayTotal">$0</span>
     </div>
 
-    <!-- 報價預覽區塊 -->
-    <div class="preview-title">訊息預覽</div>
+    <!-- 預覽框 -->
     <div class="preview-box" id="previewText">您好呀～
 幫您加總一下
 總共$0
-您看對不對喔～</div>
+您再麻煩確認一下對不對喔
+謝謝您</div>
 
     <!-- 操作按鈕 -->
     <button type="button" class="btn-action" onclick="copyAndReturn()">
-      <span>📋 複製報價並跳回 LINE</span>
+      <span>📋 複製並跳回 LINE</span>
     </button>
-    <button type="button" class="btn-secondary" onclick="resetForm()">全部清除重填</button>
+    <button type="button" class="btn-secondary" onclick="resetForm()">清除重填</button>
+
+    <!-- iPhone 背板點三下設定教學 -->
+    <div class="ios-shortcut-card">
+      <div class="ios-shortcut-header" onclick="toggleIosGuide()">
+        <span>📲 iPhone 手機背板點三下秒開設定？</span>
+        <span id="iosArrow" style="color: #94a3b8;">▼</span>
+      </div>
+      <div class="ios-steps" id="iosSteps">
+        <p style="margin-bottom: 6px; font-weight: 600; color: #1e293b;">
+          可以！透過 iPhone 內建的「捷徑」功能即可實現：
+        </p>
+        <ol>
+          <li>先點下方按鈕複製本頁網址。</li>
+          <li>打開 iPhone 內建的<b>「捷徑」App</b> ➜ 右上角「＋」新增捷徑。</li>
+          <li>加入動作：搜尋<b>「打開 URL」</b>或<b>「在 Safari 中開啟 URL」</b>，貼上網址，並將捷徑命名為「報價小幫手」。</li>
+          <li>到 iPhone<b>「設定」➜「輔助使用」➜「觸控」➜ 滑到最下方「背面輕點」➜「點三下」</b>。</li>
+          <li>勾選剛建立的<b>「報價小幫手」</b>捷徑，即完成！</li>
+        </ol>
+        <button type="button" class="btn-copy-url" onclick="copyCurrentUrl()">📋 點此複製本頁網址</button>
+      </div>
+    </div>
+
   </div>
 
   <div id="toast" class="toast">已複製報價內容！</div>
@@ -546,7 +638,7 @@
       cakeMode: 'none',
       addons: new Map(),
       candlePrice: 0,
-      numCandleQty: 0,
+      numCandleDigits: '',
       hasIceBag: false
     };
 
@@ -613,10 +705,27 @@
       calc();
     }
 
-    function changeNumCandle(delta) {
-      state.numCandleQty = Math.max(0, state.numCandleQty + delta);
-      document.getElementById('numCandleQty').textContent = state.numCandleQty;
-      document.getElementById('numCandleCard').classList.toggle('active', state.numCandleQty > 0);
+    // 數字蠟燭輸入：看有幾位就加幾個 $30
+    function onNumCandleInput() {
+      const val = document.getElementById('numCandleText').value;
+      // 提取非空白字元（支援數字如 18 或 8）
+      const clean = val.replace(/\s+/g, '');
+      state.numCandleDigits = clean;
+
+      const count = clean.length;
+      const price = count * 30;
+
+      const box = document.getElementById('numCandleBox');
+      const badge = document.getElementById('numCandleBadge');
+
+      if (count > 0) {
+        box.classList.add('has-val');
+        badge.textContent = `${count}位 +$${price}`;
+      } else {
+        box.classList.remove('has-val');
+        badge.textContent = '+$0';
+      }
+
       calc();
     }
 
@@ -672,10 +781,11 @@
         total += state.candlePrice;
       }
 
-      // 數字蠟燭
-      if (state.numCandleQty > 0) {
-        const ncPrice = state.numCandleQty * 30;
-        items.push(`數字蠟燭(${state.numCandleQty}支)$${ncPrice}`);
+      // 數字蠟燭（有填才顯示，看有幾位就加幾個$30）
+      if (state.numCandleDigits && state.numCandleDigits.length > 0) {
+        const count = state.numCandleDigits.length;
+        const ncPrice = count * 30;
+        items.push(`數字蠟燭(${state.numCandleDigits})$${ncPrice}`);
         total += ncPrice;
       }
 
@@ -685,7 +795,7 @@
         total += 100;
       }
 
-      // 其他
+      // 其他（有填金額才顯示）
       const otherPrice = parseInt(document.getElementById('otherPrice').value, 10);
       if (!isNaN(otherPrice) && otherPrice > 0) {
         const otherName = document.getElementById('otherName').value.trim() || '其他';
@@ -693,7 +803,7 @@
         total += otherPrice;
       }
 
-      // 備註
+      // 備註（有填金額才顯示）
       const notePrice = parseInt(document.getElementById('notePrice').value, 10);
       if (!isNaN(notePrice) && notePrice > 0) {
         const noteName = document.getElementById('noteName').value.trim() || '備註';
@@ -704,9 +814,10 @@
       return { items, total };
     }
 
+    // 格式化輸出文字
     function buildOutputText(items, total) {
       const header = '您好呀～\n幫您加總一下';
-      const footer = `總共$${total}\n您看對不對喔～`;
+      const footer = `總共$${total}\n您再麻煩確認一下對不對喔\n謝謝您`;
       if (items.length === 0) {
         return `${header}\n${footer}`;
       }
@@ -785,9 +896,10 @@
       document.querySelectorAll('.addon-btn').forEach(btn => btn.classList.remove('active'));
 
       state.candlePrice = 0;
-      state.numCandleQty = 0;
-      document.getElementById('numCandleQty').textContent = '0';
-      document.getElementById('numCandleCard').classList.remove('active');
+      state.numCandleDigits = '';
+      document.getElementById('numCandleText').value = '';
+      document.getElementById('numCandleBox').classList.remove('has-val');
+      document.getElementById('numCandleBadge').textContent = '+$0';
 
       state.hasIceBag = false;
       document.getElementById('iceBagToggle').classList.remove('active');
@@ -798,7 +910,28 @@
       document.getElementById('notePrice').value = '';
 
       calc();
-      showToast('已重設所有選項');
+      showToast('已全部清除重填');
+    }
+
+    // 教學收合切換
+    function toggleIosGuide() {
+      const steps = document.getElementById('iosSteps');
+      const arrow = document.getElementById('iosArrow');
+      const isShow = steps.style.display === 'block';
+      steps.style.display = isShow ? 'none' : 'block';
+      arrow.textContent = isShow ? '▼' : '▲';
+    }
+
+    function copyCurrentUrl() {
+      const url = window.location.href;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('已複製網址！請至 iPhone 捷徑貼上');
+        });
+      } else {
+        fallbackCopy(url);
+        showToast('已複製網址！請至 iPhone 捷徑貼上');
+      }
     }
 
     calc();

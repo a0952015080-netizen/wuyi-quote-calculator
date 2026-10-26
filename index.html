@@ -391,6 +391,29 @@
       background: var(--primary-dark);
     }
 
+    .btn-row-aux {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .btn-aux {
+      flex: 1;
+      padding: 7px 6px;
+      background: #eef2f6;
+      border: 1px solid #dbe1ea;
+      border-radius: 8px;
+      color: #4b5563;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-aux:active {
+      background: #e2e8f0;
+    }
+
     .btn-secondary {
       width: 100%;
       padding: 8px;
@@ -600,10 +623,21 @@
 謝謝您</div>
 
     <!-- 操作按鈕 -->
-    <button type="button" class="btn-action" onclick="copyAndReturn()">
-      <span>📋 複製並跳回 LINE</span>
+    <button type="button" class="btn-action" onclick="copyAndReturn('lineoa')">
+      <span>📋 複製並回到官方 LINE</span>
     </button>
-    <button type="button" class="btn-secondary" onclick="resetForm()">清除重填</button>
+
+    <div class="btn-row-aux">
+      <button type="button" class="btn-aux" onclick="copyAndReturn('line')">
+        💬 回個人 LINE
+      </button>
+      <button type="button" class="btn-aux" onclick="copyAndReturn('none')">
+        📄 僅複製內容
+      </button>
+      <button type="button" class="btn-aux" onclick="resetForm()" style="color: #ef4444;">
+        🗑️ 清除重填
+      </button>
+    </div>
 
     <!-- iPhone 背板點三下設定教學 -->
     <div class="ios-shortcut-card">
@@ -839,7 +873,7 @@
       }, 2000);
     }
 
-    function copyAndReturn() {
+    function copyAndReturn(target = 'lineoa') {
       const { items, total } = getSummaryData();
       if (items.length === 0) {
         alert('請先選擇或輸入至少一項品項金額！');
@@ -849,10 +883,19 @@
       const text = buildOutputText(items, total);
 
       const handleSuccess = () => {
-        showToast('已複製！即將跳回 LINE');
-        setTimeout(() => {
-          window.location.href = "line://";
-        }, 300);
+        if (target === 'lineoa') {
+          showToast('已複製！即將回到官方 LINE');
+          setTimeout(() => {
+            window.location.href = "lineoa://";
+          }, 300);
+        } else if (target === 'line') {
+          showToast('已複製！即將跳回 LINE');
+          setTimeout(() => {
+            window.location.href = "line://";
+          }, 300);
+        } else {
+          showToast('已複製報價文字！');
+        }
       };
 
       if (navigator.clipboard && navigator.clipboard.writeText) {

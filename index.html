@@ -30,14 +30,15 @@
       height: 100%;
       height: 100dvh;
       background: var(--bg);
-      overflow: hidden; /* 緊湊一頁，不捲動 */
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
       color: var(--text);
-      padding: 4px 6px;
-      padding-bottom: calc(4px + env(safe-area-inset-bottom));
+      padding: 5px 7px;
+      padding-bottom: calc(5px + env(safe-area-inset-bottom));
       display: flex;
       flex-direction: column;
       -webkit-font-smoothing: antialiased;
@@ -47,10 +48,9 @@
       max-width: 440px;
       margin: 0 auto;
       width: 100%;
-      height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 3px; /* 緊密接合，徹底去除空隙 */
+      gap: 4px;
       justify-content: flex-start;
     }
 
@@ -59,45 +59,32 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 2px;
-      height: 22px;
+      padding: 1px 2px;
+      height: 24px;
       flex-shrink: 0;
     }
 
-    .back-btn {
-      font-size: 11px;
-      color: #4b5563;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      padding: 1px 6px;
-      border-radius: 4px;
-      background: #e2e5ea;
-      font-weight: 600;
-    }
-
     .app-title {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #111827;
-      text-align: center;
+      text-align: left;
     }
 
     .top-tools {
       display: flex;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
     }
 
     .btn-dismiss-kbd {
       display: none;
-      font-size: 10px;
+      font-size: 10.5px;
       background: #111827;
       color: #fff;
       border: none;
       border-radius: 4px;
-      padding: 1px 6px;
+      padding: 2px 7px;
       font-weight: 700;
       cursor: pointer;
     }
@@ -112,12 +99,12 @@
       background: #eff6ff;
       border: 1px solid #bfdbfe;
       border-radius: 4px;
-      padding: 1px 5px;
+      padding: 2px 6px;
       font-weight: 600;
       cursor: pointer;
     }
 
-    /* 緊湊卡片：極小內外距 */
+    /* 緊湊卡片 */
     .card {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -125,7 +112,6 @@
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
       border: 1px solid rgba(0, 0, 0, 0.04);
       flex-shrink: 0;
-      margin: 0; /* 清空外距 */
     }
 
     .card-title {
@@ -138,7 +124,7 @@
       justify-content: space-between;
     }
 
-    /* 主品項：花束＋蛋糕雙欄 */
+    /* 主品項：雙欄 */
     .main-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -148,58 +134,52 @@
     .sub-col {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
     }
 
     .col-header {
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 700;
       color: #4b5563;
       display: flex;
       align-items: center;
       gap: 2px;
+      margin-bottom: 1px;
     }
 
-    /* 分段切換按鈕 */
-    .segment-group {
-      display: flex;
-      background: #f0f2f5;
+    /* 快捷按鈕 */
+    .btn-item {
+      height: 27px;
       border-radius: 5px;
-      padding: 1.5px;
-      gap: 2px;
-      height: 25px;
-    }
-
-    .segment-btn {
-      flex: 1;
-      border: none;
-      background: transparent;
-      font-size: 11px;
+      border: 1.2px solid var(--border);
+      background: #fff;
+      font-size: 11.5px;
       font-weight: 600;
-      color: #555c68;
-      border-radius: 3px;
+      color: #374151;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 2px;
+      transition: all 0.12s;
     }
 
-    .segment-btn.active {
-      background: #ffffff;
-      color: #065f46;
+    .btn-item.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: #0d6832;
       font-weight: 700;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     }
 
-    /* 所有輸入框：維持 16px 防止 iOS Zoom，高度壓縮 */
+    /* 輸入框：維持 16px 防止 iOS Zoom */
     input[type="text"],
     input[type="number"] {
       width: 100%;
-      height: 25px;
-      padding: 1px 5px;
-      font-size: 16px !important; /* 防止 iOS 縮放 */
+      height: 26px;
+      padding: 1px 6px;
+      font-size: 16px !important;
       border: 1.2px solid var(--border);
-      border-radius: 4px;
+      border-radius: 5px;
       background: #fff;
       color: var(--text);
       outline: none;
@@ -215,89 +195,49 @@
       color: #9ca3af;
     }
 
-    /* 花束選項 */
-    .flower-options-row {
+    /* 蛋糕快選金額標籤 (760 1030 1060) */
+    .preset-group {
       display: flex;
       gap: 3px;
     }
 
-    .chip-mini {
+    .preset-pill {
       flex: 1;
-      border: 1.2px solid var(--border);
-      background: #fff;
-      height: 23px;
+      height: 24px;
+      border: 1.2px solid #cbd5e1;
+      background: #f8fafc;
       border-radius: 4px;
       font-size: 10.5px;
       font-weight: 600;
-      color: #4b5563;
+      color: #334155;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.12s;
     }
 
-    .chip-mini.active {
+    .preset-pill.active {
       border-color: var(--primary);
       background: var(--primary-light);
       color: var(--primary-dark);
       font-weight: 700;
     }
 
-    .toggle-pill {
-      height: 23px;
-      padding: 0 5px;
-      border-radius: 4px;
-      border: 1.2px solid var(--border);
-      background: #fff;
-      font-size: 10.5px;
-      font-weight: 600;
-      color: #4b5563;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .toggle-pill.active {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      color: #065f46;
-      font-weight: 700;
-    }
-
-    /* 蛋糕快選金額標籤 */
-    .cake-presets {
-      display: flex;
-      gap: 2px;
-      overflow-x: auto;
-    }
-
-    .preset-pill {
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      padding: 1px 4px;
-      border-radius: 3px;
-      font-size: 9.5px;
-      font-weight: 600;
-      color: #475569;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    /* 加購膠囊按鈕 */
+    /* 加購格線按鈕 */
     .capsule-grid-3 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 3px;
+      gap: 4px;
       margin-bottom: 3px;
     }
 
     .capsule-btn {
-      height: 27px;
-      border-radius: 4px;
+      height: 29px;
+      border-radius: 5px;
       border: 1.2px solid var(--border);
       background: #fff;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 600;
       color: #374151;
       cursor: pointer;
@@ -306,10 +246,11 @@
       justify-content: center;
       gap: 2px;
       transition: all 0.12s;
+      white-space: nowrap;
     }
 
     .capsule-btn span {
-      font-size: 9px;
+      font-size: 9.5px;
       color: #6b7280;
     }
 
@@ -325,16 +266,29 @@
       font-weight: 700;
     }
 
+    /* 次數徽章 (x1, x2, x3...) */
+    .mult-badge {
+      display: inline-block;
+      background: #06c755;
+      color: #fff !important;
+      border-radius: 10px;
+      padding: 0 4px;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 14px;
+      margin-left: 2px;
+    }
+
     /* 數字蠟燭列 */
     .num-candle-bar {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       height: 27px;
       border: 1.2px solid var(--border);
-      border-radius: 4px;
+      border-radius: 5px;
       background: #fff;
-      padding: 0 5px;
+      padding: 0 6px;
       margin-bottom: 3px;
     }
 
@@ -346,10 +300,10 @@
     .num-candle-input {
       flex: 1;
       height: 21px !important;
-      padding: 0 4px !important;
+      padding: 0 5px !important;
       font-size: 16px !important;
       border: 1px solid #cbd5e1 !important;
-      border-radius: 3px !important;
+      border-radius: 4px !important;
       background: #fff !important;
     }
 
@@ -363,7 +317,7 @@
     /* 其他與備註橫列 */
     .compact-custom-row {
       display: flex;
-      gap: 3px;
+      gap: 4px;
       margin-bottom: 2px;
     }
 
@@ -371,17 +325,16 @@
       margin-bottom: 0;
     }
 
-    /* 總額結算條：緊密無縫貼合 */
+    /* 總額結算條 */
     .total-bar {
       background: #ffffff;
       border-radius: var(--radius);
-      padding: 3px 7px;
+      padding: 3px 8px;
       border: 1.2px solid #a7f3d0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-shrink: 0;
-      margin: 0;
     }
 
     .total-left {
@@ -409,40 +362,33 @@
       font-weight: 500;
     }
 
-    /* 預覽文案區：flex: 1 彈性自適應，徹底消除多餘空白！ */
+    /* 預覽文案區：約 10 行高度 (145px) */
     .preview-card {
       background: #ffffff;
       border-radius: var(--radius);
       border: 1px dashed #cbd5e1;
-      padding: 4px 6px;
-      flex: 1; /* 自然填滿中間空間，不留死白！ */
-      min-height: 60px;
+      padding: 5px 7px;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       gap: 2px;
-      margin: 0;
-      overflow: hidden;
     }
 
     .preview-card-title {
       font-size: 9.5px;
       font-weight: 700;
       color: #94a3b8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
     }
 
     .preview-body-direct {
-      font-size: 11px;
+      font-size: 11.5px;
       color: #334155;
       white-space: pre-wrap;
       line-height: 1.35;
       background: #f8fafc;
-      padding: 3px 5px;
-      border-radius: 4px;
-      flex: 1;
+      padding: 5px 7px;
+      border-radius: 5px;
+      height: 145px;
       overflow-y: auto;
     }
 
@@ -452,24 +398,23 @@
       flex-direction: column;
       gap: 3px;
       flex-shrink: 0;
-      margin: 0;
     }
 
     .btn-action {
       width: 100%;
-      height: 38px;
+      height: 40px;
       background: var(--primary);
       color: #fff;
       border: none;
-      border-radius: 7px;
+      border-radius: 8px;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 1px 4px rgba(6, 199, 85, 0.25);
+      box-shadow: 0 2px 6px rgba(6, 199, 85, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
     }
 
     .btn-action:active {
@@ -479,15 +424,15 @@
 
     .btn-row-aux {
       display: flex;
-      gap: 3px;
+      gap: 4px;
     }
 
     .btn-aux {
       flex: 1;
-      height: 24px;
+      height: 25px;
       background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 5px;
       color: #4b5563;
       font-size: 10px;
       font-weight: 600;
@@ -520,10 +465,10 @@
 
     .modal-content {
       background: #fff;
-      border-radius: 10px;
-      padding: 12px;
+      border-radius: 12px;
+      padding: 14px;
       width: 100%;
-      max-width: 340px;
+      max-width: 350px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
@@ -531,14 +476,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
-      font-size: 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
       font-weight: 700;
       color: #1e293b;
     }
 
     .modal-close {
-      font-size: 16px;
+      font-size: 18px;
       color: #94a3b8;
       border: none;
       background: transparent;
@@ -548,14 +493,14 @@
     /* Toast */
     .toast {
       position: fixed;
-      top: 10px;
+      top: 12px;
       left: 50%;
       transform: translateX(-50%) translateY(-20px);
       background: rgba(17, 24, 39, 0.94);
       color: #fff;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 20px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 500;
       opacity: 0;
       pointer-events: none;
@@ -574,7 +519,6 @@
   <div class="container">
     <!-- 頂部資訊列 -->
     <div class="top-bar">
-      <a href="./index.html" class="back-btn">‹ 導航</a>
       <span class="app-title">📋 訂單報價小幫手</span>
       <div class="top-tools">
         <button type="button" id="btnDismissKbd" class="btn-dismiss-kbd" onclick="dismissKeyboard()">✓ 收鍵盤</button>
@@ -582,79 +526,65 @@
       </div>
     </div>
 
-    <!-- 1. 主品項：雙欄並排（花束 ＋ 蛋糕） -->
+    <!-- 1. 主品項：花束 ＋ 蛋糕 (加回標題) -->
     <div class="card">
       <div class="main-grid">
-        <!-- 左欄：花束 -->
+        <!-- 左邊：花束品項 -->
         <div class="sub-col">
           <div class="col-header">💐 花束品項</div>
-          <div class="segment-group">
-            <button type="button" class="segment-btn active" id="btnFlowerNone" onclick="setFlowerMode('none')">無</button>
-            <button type="button" class="segment-btn" id="btnFlowerActive" onclick="setFlowerMode('flower')">花束</button>
+          <div style="display: flex; gap: 4px;">
+            <button type="button" class="btn-item" id="btnFlower390" style="flex: 1.1;" onclick="toggleFlower390()">
+              💐 花束 $390
+            </button>
+            <button type="button" class="btn-item" id="btnBag" style="flex: 0.9;" onclick="toggleBag()">
+              🛍️ 提袋 $40
+            </button>
           </div>
-          <div id="flowerDetail" style="display: none; flex-direction: column; gap: 2px;">
-            <div class="flower-options-row">
-              <button type="button" class="chip-mini active" id="btnFlower390" onclick="setFlowerPriceType('390')">$390</button>
-              <button type="button" class="chip-mini" id="btnFlowerCustom" onclick="setFlowerPriceType('custom')">自訂</button>
-            </div>
-            <div id="flowerCustomInputWrap" style="display: none;">
-              <input type="number" id="flowerCustomPrice" placeholder="金額" inputmode="numeric" enterkeyhint="done" onkeydown="handleEnter(event)" onfocus="onInputFocus()" oninput="calc()">
-            </div>
-            <div class="toggle-pill" id="bagToggle" onclick="toggleBag()">
-              <span>🛍️ 提袋</span>
-              <span>+$40</span>
-            </div>
-          </div>
+          <!-- 自訂價格直接打字 -->
+          <input type="number" id="flowerCustomPrice" placeholder="花束自訂金額" inputmode="numeric" enterkeyhint="done" onkeydown="handleEnter(event)" onfocus="onInputFocus()" oninput="onFlowerCustomInput()">
         </div>
 
-        <!-- 右欄：蛋糕 -->
+        <!-- 右邊：蛋糕品項 -->
         <div class="sub-col">
           <div class="col-header">🎂 蛋糕品項</div>
-          <div class="segment-group">
-            <button type="button" class="segment-btn active" id="btnCakeNone" onclick="setCakeMode('none')">無</button>
-            <button type="button" class="segment-btn" id="btnCakeActive" onclick="setCakeMode('cake')">蛋糕</button>
-          </div>
-          <div id="cakeDetail" style="display: none; flex-direction: column; gap: 2px;">
-            <input type="number" id="cakePrice" placeholder="輸入蛋糕金額" inputmode="numeric" enterkeyhint="done" onkeydown="handleEnter(event)" onfocus="onInputFocus()" oninput="calc()">
-            <!-- 蛋糕常用快選金額標籤 -->
-            <div class="cake-presets">
-              <span class="preset-pill" onclick="setCakePreset(650)">$650</span>
-              <span class="preset-pill" onclick="setCakePreset(800)">$800</span>
-              <span class="preset-pill" onclick="setCakePreset(850)">$850</span>
-              <span class="preset-pill" onclick="setCakePreset(950)">$950</span>
-              <span class="preset-pill" onclick="setCakePreset(1200)">$1200</span>
-            </div>
+          <input type="number" id="cakePrice" placeholder="蛋糕金額(可直接打字)" inputmode="numeric" enterkeyhint="done" onkeydown="handleEnter(event)" onfocus="onInputFocus()" oninput="onCakeInput()">
+          <!-- 快捷金額：760 / 1030 / 1060 -->
+          <div class="preset-group">
+            <button type="button" class="preset-pill" id="cakePreset760" onclick="selectCakePreset(760)">760</button>
+            <button type="button" class="preset-pill" id="cakePreset1030" onclick="selectCakePreset(1030)">1030</button>
+            <button type="button" class="preset-pill" id="cakePreset1060" onclick="selectCakePreset(1060)">1060</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 2. 常見加購區 (緊鄰花束蛋糕，無任何多餘空白) -->
+    <!-- 2. 常見加購區 -->
     <div class="card">
       <div class="card-title">
         <span>✨ 常見加購</span>
+        <span style="font-size: 10px; font-weight: normal; color: #8c95a0;">按幾下乘幾次(最多5次，第6次歸零)</span>
       </div>
 
-      <!-- 餐具列：2人 / 5人 / 10人 -->
+      <!-- 餐具列：2人($15) / 5人($30) / 10人($50) 連按計數 -->
       <div class="capsule-grid-3">
-        <button type="button" class="capsule-btn" id="addon-utensil2" onclick="toggleAddon('utensil2', '2人餐具', 15)">
-          2人餐具 <span>+$15</span>
+        <button type="button" class="capsule-btn" id="btnUtensil2" onclick="cycleItem('utensil2')">
+          2人餐具 <span id="lblUtensil2">+$15</span>
         </button>
-        <button type="button" class="capsule-btn" id="addon-utensil5" onclick="toggleAddon('utensil5', '5人餐具', 30)">
-          5人餐具 <span>+$30</span>
+        <button type="button" class="capsule-btn" id="btnUtensil5" onclick="cycleItem('utensil5')">
+          5人餐具 <span id="lblUtensil5">+$30</span>
         </button>
-        <button type="button" class="capsule-btn" id="addon-utensil10" onclick="toggleAddon('utensil10', '10人餐具', 50)">
-          10人餐具 <span>+$50</span>
+        <button type="button" class="capsule-btn" id="btnUtensil10" onclick="cycleItem('utensil10')">
+          10人餐具 <span id="lblUtensil10">+$50</span>
         </button>
       </div>
 
-      <!-- 蠟燭 / 保冰袋列 -->
+      <!-- 蠟燭 $45 / 蠟燭 $55 連按計數 / 保冰袋 -->
       <div class="capsule-grid-3">
-        <button type="button" class="capsule-btn" id="addon-candle45" onclick="selectCandle(45)">
-          蠟燭 <span>+$45</span>
+        <button type="button" class="capsule-btn" id="btnCandle45" onclick="cycleItem('candle45')">
+          蠟燭$45 <span id="lblCandle45"></span>
         </button>
-        <button type="button" class="capsule-btn" id="addon-candle55" onclick="selectCandle(55)">
-          蠟燭 <span>+$55</span>
+        <button type="button" class="capsule-btn" id="btnCandle55" onclick="cycleItem('candle55')">
+          蠟燭$55 <span id="lblCandle55"></span>
         </button>
         <button type="button" class="capsule-btn" id="addon-iceBag" onclick="toggleIceBag()">
           🧊保冰袋 <span>+$100</span>
@@ -681,7 +611,7 @@
       </div>
     </div>
 
-    <!-- 3. 總額結算條 (緊貼常見加購) -->
+    <!-- 3. 總額結算條 -->
     <div class="total-bar">
       <div class="total-left">
         <span class="total-label">加總金額</span>
@@ -690,7 +620,7 @@
       <span class="item-count-badge" id="itemCountBadge">已選 0 項</span>
     </div>
 
-    <!-- 4. 預覽文案區：緊貼總額條，flex: 1 彈性自適應，徹底消除多餘空白！ -->
+    <!-- 4. 預覽文案區 (約 10 行高度) -->
     <div class="preview-card">
       <div class="preview-card-title">
         <span>📄 報價文字即時預覽</span>
@@ -702,7 +632,7 @@
 謝謝您</div>
     </div>
 
-    <!-- 5. 操作按鈕群 (緊貼預覽區底部) -->
+    <!-- 5. 操作按鈕群 -->
     <div class="action-group">
       <button type="button" class="btn-action" onclick="copyAndReturn('lineoa')">
         <span>📋 複製並回到官方 LINE</span>
@@ -723,7 +653,7 @@
         <span>📲 iPhone 背板點三下設定</span>
         <button type="button" class="modal-close" onclick="closeModal('iosModal')">✕</button>
       </div>
-      <div style="font-size: 11.5px; color: #475569; line-height: 1.45;">
+      <div style="font-size: 12px; color: #475569; line-height: 1.5;">
         <ol style="padding-left: 16px; margin-bottom: 8px;">
           <li style="margin-bottom: 3px;">點下方按鈕複製本頁網址。</li>
           <li style="margin-bottom: 3px;">打開 iPhone <b>「捷徑」App</b> ➜ 右上角「＋」新增。</li>
@@ -731,7 +661,7 @@
           <li style="margin-bottom: 3px;">到 iPhone<b>「設定」➜「輔助使用」➜「觸控」➜「背面輕點」➜「點三下」</b>。</li>
           <li>勾選剛建立的<b>「報價小幫手」</b>捷徑！</li>
         </ol>
-        <button type="button" class="btn-action" style="height: 32px; font-size: 11.5px;" onclick="copyCurrentUrl()">
+        <button type="button" class="btn-action" style="height: 34px; font-size: 12px;" onclick="copyCurrentUrl()">
           📋 點此複製本頁網址
         </button>
       </div>
@@ -741,13 +671,19 @@
   <div id="toast" class="toast">已複製！即將回到官方 LINE</div>
 
   <script>
+    // 支援按幾下乘幾次的配置 (最多5次，第6次歸零)
+    const cycleConfigs = {
+      utensil2: { name: '2人餐具', unitPrice: 15, count: 0, btnId: 'btnUtensil2', lblId: 'lblUtensil2', defaultText: '+$15' },
+      utensil5: { name: '5人餐具', unitPrice: 30, count: 0, btnId: 'btnUtensil5', lblId: 'lblUtensil5', defaultText: '+$30' },
+      utensil10: { name: '10人餐具', unitPrice: 50, count: 0, btnId: 'btnUtensil10', lblId: 'lblUtensil10', defaultText: '+$50' },
+      candle45: { name: '蠟燭', unitPrice: 45, count: 0, btnId: 'btnCandle45', lblId: 'lblCandle45', defaultText: '' },
+      candle55: { name: '蠟燭', unitPrice: 55, count: 0, btnId: 'btnCandle55', lblId: 'lblCandle55', defaultText: '' }
+    };
+
     const state = {
-      flowerMode: 'none',
-      flowerPriceType: '390',
+      hasFlower390: false,
       hasBag: false,
-      cakeMode: 'none',
-      addons: new Map(),
-      candlePrice: 0,
+      cakePrice: 0,
       numCandleDigits: '',
       hasIceBag: false
     };
@@ -775,81 +711,94 @@
       }
     }
 
-    function setCakePreset(price) {
-      document.getElementById('cakePrice').value = price;
+    // 核心循環邏輯：按幾下就乘幾次，最多5次，第6次歸零 (0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 0)
+    function cycleItem(key) {
+      const cfg = cycleConfigs[key];
+      if (!cfg) return;
+
+      cfg.count = (cfg.count + 1) % 6; // 0 ~ 5 循環
+      updateCycleItemUI(key);
       calc();
       dismissKeyboard();
     }
 
-    function setFlowerMode(mode) {
-      state.flowerMode = mode;
-      document.getElementById('btnFlowerNone').classList.toggle('active', mode === 'none');
-      document.getElementById('btnFlowerActive').classList.toggle('active', mode === 'flower');
-      document.getElementById('flowerDetail').style.display = (mode === 'flower') ? 'flex' : 'none';
-      calc();
-      dismissKeyboard();
-    }
+    function updateCycleItemUI(key) {
+      const cfg = cycleConfigs[key];
+      const btn = document.getElementById(cfg.btnId);
+      const lbl = document.getElementById(cfg.lblId);
 
-    function setFlowerPriceType(type) {
-      state.flowerPriceType = type;
-      document.getElementById('btnFlower390').classList.toggle('active', type === '390');
-      document.getElementById('btnFlowerCustom').classList.toggle('active', type === 'custom');
-      document.getElementById('flowerCustomInputWrap').style.display = (type === 'custom') ? 'block' : 'none';
-      if (type === 'custom') {
-        document.getElementById('flowerCustomPrice').focus();
+      if (cfg.count === 0) {
+        btn.classList.remove('active');
+        lbl.innerHTML = cfg.defaultText ? `<span>${cfg.defaultText}</span>` : '';
       } else {
-        dismissKeyboard();
+        btn.classList.add('active');
+        const total = cfg.count * cfg.unitPrice;
+        if (cfg.count === 1) {
+          lbl.innerHTML = `<span class="mult-badge">1份 +$${total}</span>`;
+        } else {
+          lbl.innerHTML = `<span class="mult-badge">x${cfg.count} +$${total}</span>`;
+        }
+      }
+    }
+
+    // 花束 $390 切換
+    function toggleFlower390() {
+      state.hasFlower390 = !state.hasFlower390;
+      document.getElementById('btnFlower390').classList.toggle('active', state.hasFlower390);
+      if (state.hasFlower390) {
+        document.getElementById('flowerCustomPrice').value = '';
+      }
+      calc();
+      dismissKeyboard();
+    }
+
+    // 花束自訂價格輸入
+    function onFlowerCustomInput() {
+      const val = parseInt(document.getElementById('flowerCustomPrice').value, 10);
+      if (!isNaN(val) && val > 0) {
+        state.hasFlower390 = false;
+        document.getElementById('btnFlower390').classList.remove('active');
       }
       calc();
     }
 
+    // 提袋切換
     function toggleBag() {
       state.hasBag = !state.hasBag;
-      document.getElementById('bagToggle').classList.toggle('active', state.hasBag);
+      document.getElementById('btnBag').classList.toggle('active', state.hasBag);
       calc();
       dismissKeyboard();
     }
 
-    function setCakeMode(mode) {
-      state.cakeMode = mode;
-      document.getElementById('btnCakeNone').classList.toggle('active', mode === 'none');
-      document.getElementById('btnCakeActive').classList.toggle('active', mode === 'cake');
-      document.getElementById('cakeDetail').style.display = (mode === 'cake') ? 'flex' : 'none';
+    // 蛋糕自訂輸入
+    function onCakeInput() {
+      const val = parseInt(document.getElementById('cakePrice').value, 10);
+      state.cakePrice = (!isNaN(val) && val > 0) ? val : 0;
+      updateCakePresetButtons(state.cakePrice);
       calc();
-      if (mode === 'none') {
-        dismissKeyboard();
-      }
     }
 
-    function toggleAddon(key, name, price) {
-      const btn = document.getElementById(`addon-${key}`);
-      if (state.addons.has(key)) {
-        state.addons.delete(key);
-        btn.classList.remove('active');
+    // 蛋糕快選 (760, 1030, 1060)
+    function selectCakePreset(price) {
+      if (state.cakePrice === price) {
+        state.cakePrice = 0;
+        document.getElementById('cakePrice').value = '';
       } else {
-        state.addons.set(key, { name, price });
-        btn.classList.add('active');
+        state.cakePrice = price;
+        document.getElementById('cakePrice').value = price;
       }
+      updateCakePresetButtons(state.cakePrice);
       calc();
       dismissKeyboard();
     }
 
-    function selectCandle(price) {
-      const btn45 = document.getElementById('addon-candle45');
-      const btn55 = document.getElementById('addon-candle55');
-      if (state.candlePrice === price) {
-        state.candlePrice = 0;
-        btn45.classList.remove('active');
-        btn55.classList.remove('active');
-      } else {
-        state.candlePrice = price;
-        btn45.classList.toggle('active', price === 45);
-        btn55.classList.toggle('active', price === 55);
-      }
-      calc();
-      dismissKeyboard();
+    function updateCakePresetButtons(currentPrice) {
+      document.getElementById('cakePreset760').classList.toggle('active', currentPrice === 760);
+      document.getElementById('cakePreset1030').classList.toggle('active', currentPrice === 1030);
+      document.getElementById('cakePreset1060').classList.toggle('active', currentPrice === 1060);
     }
 
+    // 保冰袋切換
     function toggleIceBag() {
       state.hasIceBag = !state.hasIceBag;
       document.getElementById('addon-iceBag').classList.toggle('active', state.hasIceBag);
@@ -857,9 +806,11 @@
       dismissKeyboard();
     }
 
+    // 數字蠟燭輸入 (全形轉半形 + 過濾非數字)
     function onNumCandleInput() {
-      const val = document.getElementById('numCandleText').value;
-      const clean = val.replace(/\s+/g, '');
+      const raw = document.getElementById('numCandleText').value;
+      const half = raw.replace(/[０-９]/g, d => "0123456789"["０１２３４５６７８９".indexOf(d)]);
+      const clean = half.replace(/\D/g, '');
       state.numCandleDigits = clean;
 
       const count = clean.length;
@@ -879,51 +830,52 @@
       calc();
     }
 
+    // 計算資料與組裝回覆文字
     function getSummaryData() {
       const items = [];
       let total = 0;
 
-      // 花束
-      if (state.flowerMode === 'flower') {
-        let fPrice = 0;
-        if (state.flowerPriceType === '390') {
-          fPrice = 390;
-        } else {
-          const val = parseInt(document.getElementById('flowerCustomPrice').value, 10);
-          if (!isNaN(val) && val > 0) fPrice = val;
-        }
-
-        if (fPrice > 0) {
-          items.push(`花束$${fPrice}`);
-          total += fPrice;
-        }
-
-        if (state.hasBag) {
-          items.push('提袋$40');
-          total += 40;
+      // 1. 花束 (按了或填了才顯示)
+      let flowerPrice = 0;
+      if (state.hasFlower390) {
+        flowerPrice = 390;
+      } else {
+        const customVal = parseInt(document.getElementById('flowerCustomPrice').value, 10);
+        if (!isNaN(customVal) && customVal > 0) {
+          flowerPrice = customVal;
         }
       }
 
-      // 蛋糕
-      if (state.cakeMode === 'cake') {
-        const cPrice = parseInt(document.getElementById('cakePrice').value, 10);
-        if (!isNaN(cPrice) && cPrice > 0) {
-          items.push(`蛋糕$${cPrice}`);
-          total += cPrice;
-        }
+      if (flowerPrice > 0) {
+        items.push(`花束$${flowerPrice}`);
+        total += flowerPrice;
       }
 
-      // 餐具
-      state.addons.forEach(item => {
-        items.push(`${item.name}$${item.price}`);
-        total += item.price;
+      // 提袋
+      if (state.hasBag) {
+        items.push('提袋$40');
+        total += 40;
+      }
+
+      // 2. 蛋糕 (有金額才顯示)
+      if (state.cakePrice > 0) {
+        items.push(`蛋糕$${state.cakePrice}`);
+        total += state.cakePrice;
+      }
+
+      // 3. 常見加購 - 連按乘次項目 (2人餐具、5人餐具、10人餐具、蠟燭$45、$55)
+      Object.keys(cycleConfigs).forEach(key => {
+        const cfg = cycleConfigs[key];
+        if (cfg.count > 0) {
+          const itemTotal = cfg.count * cfg.unitPrice;
+          if (cfg.count === 1) {
+            items.push(`${cfg.name}$${itemTotal}`);
+          } else {
+            items.push(`${cfg.name}x${cfg.count}$${itemTotal}`);
+          }
+          total += itemTotal;
+        }
       });
-
-      // 蠟燭
-      if (state.candlePrice > 0) {
-        items.push(`蠟燭$${state.candlePrice}`);
-        total += state.candlePrice;
-      }
 
       // 數字蠟燭
       if (state.numCandleDigits && state.numCandleDigits.length > 0) {
@@ -939,7 +891,7 @@
         total += 100;
       }
 
-      // 其他
+      // 其他 (有填金額才顯示)
       const otherPrice = parseInt(document.getElementById('otherPrice').value, 10);
       if (!isNaN(otherPrice) && otherPrice > 0) {
         const otherName = document.getElementById('otherName').value.trim() || '其他';
@@ -947,7 +899,7 @@
         total += otherPrice;
       }
 
-      // 備註
+      // 備註 (有填金額才顯示)
       const notePrice = parseInt(document.getElementById('notePrice').value, 10);
       if (!isNaN(notePrice) && notePrice > 0) {
         const noteName = document.getElementById('noteName').value.trim() || '備註';
@@ -983,6 +935,29 @@
       }, 1800);
     }
 
+    function performCopy(text) {
+      let copied = false;
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        ta.style.top = '0';
+        ta.setAttribute('readonly', '');
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, 99999);
+        copied = document.execCommand('copy');
+        document.body.removeChild(ta);
+      } catch (e) {
+        copied = false;
+      }
+
+      if (!copied && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(err => console.error(err));
+      }
+    }
+
     function copyAndReturn(target = 'lineoa') {
       dismissKeyboard();
       const { items, total } = getSummaryData();
@@ -993,70 +968,53 @@
 
       const text = buildOutputText(items, total);
 
-      const handleSuccess = () => {
-        if (target === 'lineoa') {
-          showToast('已複製！即將回到官方 LINE');
-          setTimeout(() => {
-            window.location.href = "lineoa://";
-          }, 250);
-        } else if (target === 'line') {
-          showToast('已複製！即將跳回 LINE');
-          setTimeout(() => {
-            window.location.href = "line://";
-          }, 250);
-        } else {
-          showToast('已複製報價文字！');
-        }
-      };
+      if (navigator.vibrate) {
+        try { navigator.vibrate(25); } catch(e) {}
+      }
 
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(handleSuccess).catch(() => {
-          fallbackCopy(text);
-          handleSuccess();
-        });
+      performCopy(text);
+
+      if (target === 'lineoa') {
+        showToast('已複製！即將回到官方 LINE');
+        setTimeout(() => {
+          window.location.href = "lineoa://";
+        }, 220);
+      } else if (target === 'line') {
+        showToast('已複製！即將跳回 LINE');
+        setTimeout(() => {
+          window.location.href = "line://";
+        }, 220);
       } else {
-        fallbackCopy(text);
-        handleSuccess();
+        showToast('已複製報價文字！');
       }
-    }
-
-    function fallbackCopy(text) {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      try {
-        document.execCommand('copy');
-      } catch (e) {
-        console.error('複製失敗', e);
-      }
-      document.body.removeChild(ta);
     }
 
     function resetForm() {
       dismissKeyboard();
-      setFlowerMode('none');
-      setFlowerPriceType('390');
-      state.hasBag = false;
-      document.getElementById('bagToggle').classList.remove('active');
+      state.hasFlower390 = false;
+      document.getElementById('btnFlower390').classList.remove('active');
       document.getElementById('flowerCustomPrice').value = '';
 
-      setCakeMode('none');
+      state.hasBag = false;
+      document.getElementById('btnBag').classList.remove('active');
+
+      state.cakePrice = 0;
       document.getElementById('cakePrice').value = '';
+      updateCakePresetButtons(0);
 
-      state.addons.clear();
-      document.querySelectorAll('.capsule-btn').forEach(btn => btn.classList.remove('active'));
+      // 餐具與蠟燭循環全部歸零
+      Object.keys(cycleConfigs).forEach(key => {
+        cycleConfigs[key].count = 0;
+        updateCycleItemUI(key);
+      });
 
-      state.candlePrice = 0;
       state.numCandleDigits = '';
       document.getElementById('numCandleText').value = '';
       document.getElementById('numCandleBar').classList.remove('active');
       document.getElementById('numCandleBadge').textContent = '+$0';
 
       state.hasIceBag = false;
+      document.getElementById('addon-iceBag').classList.remove('active');
 
       document.getElementById('otherName').value = '';
       document.getElementById('otherPrice').value = '';
@@ -1064,7 +1022,7 @@
       document.getElementById('notePrice').value = '';
 
       calc();
-      showToast('已清除重填');
+      showToast('已全部清除重填');
     }
 
     function openIosModal() {
@@ -1084,14 +1042,8 @@
 
     function copyCurrentUrl() {
       const url = window.location.href;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(() => {
-          showToast('已複製網址！請至 iPhone 捷徑貼上');
-        });
-      } else {
-        fallbackCopy(url);
-        showToast('已複製網址！請至 iPhone 捷徑貼上');
-      }
+      performCopy(url);
+      showToast('已複製網址！請至 iPhone 捷徑貼上');
     }
 
     calc();

@@ -627,7 +627,9 @@
       </div>
       <div class="preview-body-direct" id="previewText">您好呀～
 幫您加總一下
+
 總共$0
+
 您再麻煩確認一下對不對喔
 謝謝您</div>
     </div>
@@ -912,11 +914,13 @@
 
     function buildOutputText(items, total) {
       const header = '您好呀～\n幫您加總一下';
-      const footer = `總共$${total}\n您再麻煩確認一下對不對喔\n謝謝您`;
-      if (items.length === 0) {
-        return `${header}\n${footer}`;
-      }
-      return `${header}\n${items.join('\n')}\n${footer}`;
+      const footer = '您再麻煩確認一下對不對喔\n謝謝您';
+
+      const calcSection = items.length > 0
+        ? `${items.join('\n')}\n總共$${total}`
+        : `總共$${total}`;
+
+      return `${header}\n\n${calcSection}\n\n${footer}`;
     }
 
     function calc() {
